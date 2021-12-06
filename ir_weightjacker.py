@@ -53,7 +53,7 @@ midDefault = IntegerVariable("Default mid WJ", "Default value for middle WJ", 0,
 
 maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 20, 0, 20 )
 
-g_wjValues = [ minDefault, midDefault, maxDefault ]
+g_wjValues = [ minDefault.value, midDefault.value, maxDefault.value ]
 g_wjCurrent = 1 # 0 = min, 1 = mid, 2 = max
 
 decorator_min = minWJbutton.create_decorator(mode.value)
@@ -65,33 +65,33 @@ decorator_dec = decWJbutton.create_decorator(mode.value)
 @decorator_min.button(minWJbutton.input_id)
 def minWJbtn(event, vjoy):
     global g_wjCurrent
-    g_wjCurrent = 0 if event.is_pressed else 0
+    g_wjCurrent = 0
     update_axis(vjoy)
 
 @decorator_mid.button(midWJbutton.input_id)
 def midWJbtn(event, vjoy):
     global g_wjCurrent
-    g_wjCurrent = 1 if event.is_pressed else 0
+    g_wjCurrent = 1
     update_axis(vjoy)
 
 @decorator_max.button(maxWJbutton.input_id)
 def maxWJbtn(event, vjoy):
     global g_wjCurrent
-    g_wjCurrent = 2 if event.is_pressed else 0
+    g_wjCurrent = 2
     update_axis(vjoy)
 
 @decorator_inc.button(incWJbutton.input_id)
 def incWJbtn(event, vjoy):
     global g_wjValues
-    g_wjValues[g_wjCurrent] += adjustmentSize if event.is_pressed else 0
+    g_wjValues[g_wjCurrent] += adjustmentSize.value
     update_axis(vjoy)
 
 @decorator_dec.button(decWJbutton.input_id)
 def decWJbtn(event, vjoy):
     global g_wjValues
-    g_wjValues[g_wjCurrent] -= adjustmentSize if event.is_pressed else 0
+    g_wjValues[g_wjCurrent] -= adjustmentSize.value
     update_axis(vjoy)
 
 def update_axis(vjoy):
-    value = gremlin.util.clamp((g_wjValues[g_wjCurrent]/20),-1.0,1.0)
-    vjoy[outputAxis.vjoy_id].axis(outputAxis).value = value
+    value = gremlin.util.clamp((float(g_wjValues[g_wjCurrent])/20),-1.0,1.0)
+    vjoy[outputAxis.vjoy_id].axis(outputAxis.input_id).value = value
