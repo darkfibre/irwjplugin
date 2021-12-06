@@ -3,10 +3,10 @@ from gremlin.user_plugin import *
 
 mode = ModeVariable("Mode", "Mode in which to use these settings")
 
-outputAxis = VirtualInputVariable(
-    "Output Axis",
-    "vJoy axis to use as the output",
-    [gremlin.common.InputType.JoystickAxis]
+output = VirtualInputVariable(
+    "Output Device",
+    "vJoy device to use as the output, must have 40 buttons",
+    [gremlin.common.InputType.JoystickWrapper]
 )
 
 minWJbutton = PhysicalInputVariable(
@@ -66,32 +66,34 @@ decorator_dec = decWJbutton.create_decorator(mode.value)
 def minWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 0
-    update_axis(vjoy)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+20),0,40)
+    vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
+
 
 @decorator_mid.button(midWJbutton.input_id)
 def midWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 1
-    update_axis(vjoy)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+20),0,40)
+    vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_max.button(maxWJbutton.input_id)
 def maxWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 2
-    update_axis(vjoy)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+20),0,40)
+    vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_inc.button(incWJbutton.input_id)
 def incWJbtn(event, vjoy):
     global g_wjValues
     g_wjValues[g_wjCurrent] += adjustmentSize.value
-    update_axis(vjoy)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+20),0,40)
+    vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_dec.button(decWJbutton.input_id)
 def decWJbtn(event, vjoy):
     global g_wjValues
     g_wjValues[g_wjCurrent] -= adjustmentSize.value
-    update_axis(vjoy)
-
-def update_axis(vjoy):
-    value = gremlin.util.clamp((float(g_wjValues[g_wjCurrent])/20),-1.0,1.0)
-    vjoy[outputAxis.vjoy_id].axis(outputAxis.input_id).value = value
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+20),0,40)
+    vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
