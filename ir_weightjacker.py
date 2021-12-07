@@ -56,8 +56,9 @@ maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 2
 g_wjValues = [ minDefault.value, midDefault.value, maxDefault.value ]
 g_wjCurrent = 1 # 0 = min, 1 = mid, 2 = max
 
-g_btnMin = output.button_id + 21
-g_btnMax = output.button_id + 40
+g_btnMin = 1 # First button on device
+g_btnMax = 41 # Last button on device
+g_wjOffset = g_btnMin + 20 # Offset between absolute WJ value and button ID
 
 decorator_min = minWJbutton.create_decorator(mode.value)
 decorator_mid = midWJbutton.create_decorator(mode.value)
@@ -69,7 +70,8 @@ decorator_dec = decWJbutton.create_decorator(mode.value)
 def minWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 0
-    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_btnMin),g_btnMin,g_btnMax)
+    if event.is_pressed:
+        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 
@@ -77,26 +79,30 @@ def minWJbtn(event, vjoy):
 def midWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 1
-    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_btnMin),g_btnMin,g_btnMax)
+    if event.is_pressed:
+        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_max.button(maxWJbutton.input_id)
 def maxWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 2
-    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_btnMin),g_btnMin,g_btnMax)
+    if event.is_pressed:
+        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_inc.button(incWJbutton.input_id)
 def incWJbtn(event, vjoy):
     global g_wjValues
-    g_wjValues[g_wjCurrent] += adjustmentSize.value
-    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_btnMin),g_btnMin,g_btnMax)
+    if event.is_pressed:
+        g_wjValues[g_wjCurrent] += adjustmentSize.value
+        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_dec.button(decWJbutton.input_id)
 def decWJbtn(event, vjoy):
     global g_wjValues
-    g_wjValues[g_wjCurrent] -= adjustmentSize.value
-    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_btnMin),g_btnMin,g_btnMax)
+    if event.is_pressed:
+        g_wjValues[g_wjCurrent] -= adjustmentSize.value
+        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
