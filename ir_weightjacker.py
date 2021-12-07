@@ -70,8 +70,7 @@ decorator_dec = decWJbutton.create_decorator(mode.value)
 def minWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 0
-    if event.is_pressed:
-        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 
@@ -79,30 +78,28 @@ def minWJbtn(event, vjoy):
 def midWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 1
-    if event.is_pressed:
-        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_max.button(maxWJbutton.input_id)
 def maxWJbtn(event, vjoy):
     global g_wjCurrent
     g_wjCurrent = 2
-    if event.is_pressed:
-        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_inc.button(incWJbutton.input_id)
 def incWJbtn(event, vjoy):
     global g_wjValues
-    if event.is_pressed:
+    if event.is_pressed and g_wjValues[g_wjCurrent] < 20:
         g_wjValues[g_wjCurrent] += adjustmentSize.value
-        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 @decorator_dec.button(decWJbutton.input_id)
 def decWJbtn(event, vjoy):
     global g_wjValues
-    if event.is_pressed:
+    if event.is_pressed and g_wjValues[g_wjCurrent] > -20:
         g_wjValues[g_wjCurrent] -= adjustmentSize.value
-        buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
+    buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
