@@ -1,3 +1,5 @@
+# irwjplugin v0.0.2 by Ryan Otis
+
 import gremlin
 from gremlin.user_plugin import *
 
@@ -11,19 +13,19 @@ output = VirtualInputVariable(
 
 minWJbutton = PhysicalInputVariable(
     "Min WJ Button",
-    "Button that sets the weight jacker to the minimum value",
+    "Button to set the weight jacker to the minimum value (default is -20)",
     [gremlin.common.InputType.JoystickButton]
 )
 
 midWJbutton = PhysicalInputVariable(
     "Mid WJ Button",
-    "Button that sets the weight jacker to the middle value",
+    "Button to set the weight jacker to the middle value (default is 0)",
     [gremlin.common.InputType.JoystickButton]
 )
 
 maxWJbutton = PhysicalInputVariable(
     "Max WJ Button",
-    "Button that sets the weight jacker to the maximum value",
+    "Button to set the weight jacker to the maximum value (default is +20)",
     [gremlin.common.InputType.JoystickButton]
 )
 
