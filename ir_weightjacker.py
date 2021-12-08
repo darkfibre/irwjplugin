@@ -4,7 +4,7 @@ from gremlin.user_plugin import *
 mode = ModeVariable("Mode", "Mode in which to use these settings")
 
 output = VirtualInputVariable(
-    "First button of output device (MUST have at least 41 buttons)",
+    "Select vJoy device (MUST have at least 41 buttons)",
     "vJoy device to use as the output, must have at least 41 buttons",
     [gremlin.common.InputType.JoystickButton]
 )
@@ -47,13 +47,15 @@ adjustmentSize = IntegerVariable(
     10
 )
 
-minDefault = IntegerVariable("Default min WJ", "Default value for minimum WJ", -20, -20, 0)
+# I originally made this configurable, but it's really unnecessary and just caused confusion
+#
+# minDefault = IntegerVariable("Default min WJ", "Default value for minimum WJ", -20, -20, 0)
+# midDefault = IntegerVariable("Default mid WJ", "Default value for middle WJ", 0, -19, 19)
+# maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 20, 0, 20 )
+#
+# g_wjValues = [ minDefault.value, midDefault.value, maxDefault.value ]
 
-midDefault = IntegerVariable("Default mid WJ", "Default value for middle WJ", 0, -19, 19)
-
-maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 20, 0, 20 )
-
-g_wjValues = [ minDefault.value, midDefault.value, maxDefault.value ]
+g_wjValues = [ -20, 0, 20 ]
 g_wjCurrent = 1 # 0 = min, 1 = mid, 2 = max
 
 g_btnMin = 1 # First button on device
