@@ -1238,50 +1238,72 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ul>
 <li>Install and configure <a href="https://github.com/shauleiz/vJoy/releases">vJoy</a>
 <ul>
-<li>Run the &quot;Configure vJoy&quot; utility and configure your vJoy device to have at least <strong>41 buttons.</strong></li>
-<li>You do not need any other options enabled for the device.</li>
-<li>You must <strong>reboot</strong> after configuration.</li>
+<li>
+<p>Run the &quot;Configure vJoy&quot; utility and configure your vJoy device to have at least <strong>41 buttons.</strong>  If you are already using vJoy for other purposes, create a NEW vJoy device using the configuration utility, and set it to have 41 buttons.</p>
+</li>
+<li>
+<p>The configuration will look something like this-</p>
+<p><img src="file:////Users/rotis/git/irwjplugin/Configure_vJoy.png" alt="Example vJoy Configuration"></p>
+</li>
+<li>
+<p>You must <strong>REBOOT</strong> after configuration.</p>
+</li>
 </ul>
 </li>
 <li>Install <a href="https://whitemagic.github.io/JoystickGremlin/download/">Joystick Gremlin</a></li>
 </ul>
-<h3 id="setup-instructions">Setup Instructions</h3>
+<h3 id="joystick-gremlin-setup">Joystick Gremlin Setup</h3>
 <ul>
-<li>Run Joystick Gremlin and go to the <strong>Plugins</strong> tab.</li>
-<li>Add a plugin, and select the ir_weightjacker.py file.</li>
-<li>Click on the small gear to configure the plugin.
+<li>
+<p>Run Joystick Gremlin and go to the <strong>Plugins</strong> tab.</p>
+</li>
+<li>
+<p>Add a plugin, select the ir_weightjacker.py file.</p>
+</li>
+<li>
+<p>Click on the small gear to configure the plugin.</p>
 <ul>
-<li>Make sure the correct vJoy device is selected, confirm all 41 buttons appear in the dropdown.</li>
-<li>Click on each of the button assignments and press the button(s) on your controller to assign them</li>
+<li>Make sure the correct vJoy device is selected.
+<ul>
+<li>Confirm all 41 buttons appear in the dropdown.</li>
 </ul>
 </li>
-<li>Click on the <strong>Activate</strong> button on the toolbar to enable the remapping/configuration
-<ul>
-<li>Save the configuration in Joystick Gremlin, you can also make it auto-activate in the settings if you prefer.</li>
+<li>Click on each of the button assignments to assign them.</li>
 </ul>
 </li>
-<li><em>Optional:</em> Launch <strong>vJoy Monitor</strong> and verify the buttons on the vJoy device are triggered as you press different buttons.</li>
-<li>iRacing Setup
+<li>
+<p>Click on the <strong>Activate</strong> button on the toolbar.</p>
+</li>
+<li>
+<p>Illustration below-</p>
+<p><img src="file:////Users/rotis/git/irwjplugin/Configure_Plugin.png" alt="Joystick Gremlin Configuration"></p>
+</li>
+<li>
+<p><strong>Save</strong> the configuration in Joystick Gremlin, you can also make it auto-activate in the settings if you prefer.</p>
+</li>
+<li>
+<p><em>Optional:</em> Launch <strong>vJoy Monitor</strong> and verify the buttons on the vJoy device are triggered as you press different buttons.</p>
+</li>
+</ul>
+<h3 id="iracing-setup">iRacing Setup</h3>
 <ul>
 <li>Ensure the buttons that you assigned in Joystick Gremlin are not <em>also</em> assigned in iRacing, as this may give unexpected results.</li>
 <li>Launch iRacing and go to <strong>Options -&gt; Controls</strong>
 <ul>
-<li>Select the right rear spring offset</li>
-<li>Set the type dropdown to <strong>&quot;Use rotary knob (analog or digital)&quot;</strong>
+<li>Select right rear spring offset.</li>
+<li>Set the type dropdown to <strong>&quot;Use rotary knob (analog or digital)&quot;</strong>.
 <ul>
-<li>Leave the second dropdown set at <strong>&quot;No offset&quot;</strong></li>
+<li>Leave the second dropdown set at <strong>&quot;No offset&quot;</strong>.</li>
 </ul>
 </li>
-<li>Press the button on your wheel assigned to <strong>Minimum WJ</strong></li>
-<li>Now press the button assigned to <strong>Maximum WJ</strong>.</li>
+<li>Press and release the button assigned to <strong>Minimum WJ</strong>.</li>
+<li>Press and release the button assigned to <strong>Maximum WJ</strong>.</li>
 <li>iRacing should show the <strong>&quot;Dev # qaxis 0-40&quot;</strong> in the calibration dialog.</li>
 </ul>
 </li>
 <li>Click <strong>Done</strong></li>
 </ul>
-</li>
-</ul>
-<p>That's about it.</p>
+<p>Please note that the plugin is only working when Joystick Gremlin is running and the config is <strong>Active</strong>. Simply exiting Joystick Gremlin will revert your buttons to their original behavior. I suggest enabling the &quot;Use custom controls for this car&quot; feature for the vehicles you intend to use with this plugin.</p>
 
     </body>
     </html>

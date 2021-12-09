@@ -30,30 +30,40 @@ This provides maximum flexibility with the fewest possible button assignments.
 ### Prerequisites ####
 
 * Install and configure [vJoy](https://github.com/shauleiz/vJoy/releases)
-  * Run the "Configure vJoy" utility and configure your vJoy device to have at least **41 buttons.** 
-  * You do not need any other options enabled for the device.
-  * You must **reboot** after configuration.
+  * Run the "Configure vJoy" utility and configure your vJoy device to have at least **41 buttons.**  If you are already using vJoy for other purposes, create a NEW vJoy device using the configuration utility, and set it to have 41 buttons.
+  * The configuration will look something like this-
+
+    ![Example vJoy Configuration](Configure_vJoy.png)
+
+  * You must **REBOOT** after configuration.
 * Install [Joystick Gremlin](https://whitemagic.github.io/JoystickGremlin/download/)
 
-### Setup Instructions ###
+### Joystick Gremlin Setup ###
 
 * Run Joystick Gremlin and go to the **Plugins** tab.
-* Add a plugin, and select the ir_weightjacker.py file.
+* Add a plugin, select the ir_weightjacker.py file.
 * Click on the small gear to configure the plugin.
-	* Make sure the correct vJoy device is selected, confirm all 41 buttons appear in the dropdown.
-	* Click on each of the button assignments and press the button(s) on your controller to assign them
-* Click on the **Activate** button on the toolbar to enable the remapping/configuration
-  * Save the configuration in Joystick Gremlin, you can also make it auto-activate in the settings if you prefer.
-* *Optional:* Launch **vJoy Monitor** and verify the buttons on the vJoy device are triggered as you press different buttons.
-* iRacing Setup
-  * Ensure the buttons that you assigned in Joystick Gremlin are not *also* assigned in iRacing, as this may give unexpected results.
-  * Launch iRacing and go to **Options -> Controls**
-    * Select the right rear spring offset
-    * Set the type dropdown to **"Use rotary knob (analog or digital)"**
-      * Leave the second dropdown set at **"No offset"**
-    * Press the button on your wheel assigned to **Minimum WJ**
-    * Now press the button assigned to **Maximum WJ**.
-    * iRacing should show the **"Dev # qaxis 0-40"** in the calibration dialog.
-  * Click **Done**
+	* Make sure the correct vJoy device is selected.
+      * Confirm all 41 buttons appear in the dropdown.
+	* Click on each of the button assignments to assign them.
+* Click on the **Activate** button on the toolbar. 
+* Illustration below-
 
-That's about it.
+  ![Joystick Gremlin Configuration](Configure_Plugin.png)
+
+* **Save** the configuration in Joystick Gremlin, you can also make it auto-activate in the settings if you prefer.
+* *Optional:* Launch **vJoy Monitor** and verify the buttons on the vJoy device are triggered as you press different buttons.
+
+### iRacing Setup ###
+
+* Ensure the buttons that you assigned in Joystick Gremlin are not *also* assigned in iRacing, as this may give unexpected results.
+* Launch iRacing and go to **Options -> Controls**
+  * Select right rear spring offset.
+  * Set the type dropdown to **"Use rotary knob (analog or digital)"**.
+    * Leave the second dropdown set at **"No offset"**.
+  * Press and release the button assigned to **Minimum WJ**.
+  * Press and release the button assigned to **Maximum WJ**.
+  * iRacing should show the **"Dev # qaxis 0-40"** in the calibration dialog.
+* Click **Done**
+
+Please note that the plugin is only working when Joystick Gremlin is running and the config is **Active**. Simply exiting Joystick Gremlin will revert your buttons to their original behavior. I suggest enabling the "Use custom controls for this car" feature for the vehicles you intend to use with this plugin.
