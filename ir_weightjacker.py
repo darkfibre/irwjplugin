@@ -1,4 +1,4 @@
-# irwjplugin v0.0.2 by Ryan Otis
+# irwjplugin v0.0.3 by Ryan Otis
 
 import gremlin
 import threading
@@ -63,7 +63,6 @@ g_wjValues = [ -20, 0, 20 ]
 g_wjCurrent = 1 # 0 = min, 1 = mid, 2 = max
 g_state = [ 0, 0 ]
 g_cal_t = None
-g_start_t = 0
 
 g_btnMin = 1 # First button on device
 g_btnMax = 41 # Last button on device
@@ -121,12 +120,12 @@ def decWJbtn(event, vjoy):
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
 def check_calibration(is_pressed, vjoy):
-    global g_cal_t, g_start_t
+    global g_cal_t
 
     if g_state[0] == 1 and g_state[1] == 1:
         if is_pressed:
             if g_cal_t is not None: g_cal_t.cancel()
-            g_cal_t = threading.Timer(2.0, run_calibration, args=(vjoy))
+            g_cal_t = threading.Timer(2.0, run_calibration, [vjoy])
             g_cal_t.start()
         else:
             if g_cal_t is not None: g_cal_t.cancel()
@@ -139,7 +138,12 @@ def check_calibration(is_pressed, vjoy):
 def run_calibration(vjoy):
     tts = gremlin.tts.TextToSpeech()
     tts.speak("Starting calibration routine, please release buttons.")
-    time.sleep(2.0)
+
+    gremlin.util.log("Starting calibration routine, please release buttons.")
+
+    vjoy[output.vjoy_id].button(g_wjValues[0]+g_wjOffset).is_pressed = False
+    vjoy[output.vjoy_id].button(g_wjValues[2]+g_wjOffset).is_pressed = False
+    time.sleep(3.0)
 
     for n in range(5):
        vjoy[output.vjoy_id].button(g_btnMin).is_pressed = True 
@@ -151,4 +155,4 @@ def run_calibration(vjoy):
        vjoy[output.vjoy_id].button(g_btnMax).is_pressed = False 
        time.sleep(0.4)
 
-    tts.speak("Calibration routine complete")
+    gremlin.util.log("Calibration routine complete")
