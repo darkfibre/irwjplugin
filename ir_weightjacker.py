@@ -81,7 +81,6 @@ def minWJbtn(event, vjoy):
     buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
-    # Check for calibration routine if min/max are both pressed
     g_state[0] = 1 if event.is_pressed else 0
     check_calibration(event.is_pressed, vjoy)
 
@@ -99,7 +98,6 @@ def maxWJbtn(event, vjoy):
     buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
 
-    # Check for calibration routine if min/max are both pressed
     g_state[1] = 1 if event.is_pressed else 0
     check_calibration(event.is_pressed, vjoy)
 
@@ -122,6 +120,7 @@ def decWJbtn(event, vjoy):
 def check_calibration(is_pressed, vjoy):
     global g_cal_t
 
+    # Check for calibration routine if min/max are both pressed
     if g_state[0] == 1 and g_state[1] == 1:
         if is_pressed:
             if g_cal_t is not None: g_cal_t.cancel()
