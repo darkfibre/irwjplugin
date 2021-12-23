@@ -61,7 +61,7 @@ This provides maximum flexibility with the fewest possible button assignments.
   * Select right rear spring offset.
   * Set the type dropdown to **"Use rotary knob (analog or digital)"**.
     * Leave the second dropdown set at **"No offset"**.
-  * Press and **HOLD** the **Minimum** and **Maximum** WJ buttons at the same time for **2 seconds**.
+  * Press and **HOLD** the **Min WJ** and **Max WJ** buttons at the same time for **2 seconds**.
   * You should hear a voice that says **"Starting calibration routine, please release buttons."**
   * Release both buttons
   * iRacing should show the **"Dev # qaxis 0-40"** in the calibration dialog.
