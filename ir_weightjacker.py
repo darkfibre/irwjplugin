@@ -105,6 +105,7 @@ def maxWJbtn(event, vjoy):
 def incWJbtn(event, vjoy):
     global g_wjValues
     if event.is_pressed and g_wjValues[g_wjCurrent] < 20:
+        vjoy[output.vjoy_id].button(g_wjValues[g_wjCurrent]+g_wjOffset).is_pressed = False
         g_wjValues[g_wjCurrent] += adjustmentSize.value
     buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
@@ -113,6 +114,7 @@ def incWJbtn(event, vjoy):
 def decWJbtn(event, vjoy):
     global g_wjValues
     if event.is_pressed and g_wjValues[g_wjCurrent] > -20:
+        vjoy[output.vjoy_id].button(g_wjValues[g_wjCurrent]+g_wjOffset).is_pressed = False
         g_wjValues[g_wjCurrent] -= adjustmentSize.value
     buttonId = gremlin.util.clamp((g_wjValues[g_wjCurrent]+g_wjOffset),g_btnMin,g_btnMax)
     vjoy[output.vjoy_id].button(buttonId).is_pressed = event.is_pressed
