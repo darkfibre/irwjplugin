@@ -43,6 +43,9 @@ decWJbutton = PhysicalInputVariable(
     [gremlin.common.InputType.JoystickButton]
 )
 
+minDefault = IntegerVariable("Default min WJ value", "Default value for minimum WJ", -20, -20, 0)
+maxDefault = IntegerVariable("Default max WJ value", "Default value for maximum WJ", 20, 0, 20 )
+
 adjustmentSize = IntegerVariable(
     "WJ Increment size",
     "Number of steps taken with each increment or decrement",
@@ -50,9 +53,6 @@ adjustmentSize = IntegerVariable(
     1,
     10
 )
-
-minDefault = IntegerVariable("Default min WJ", "Default value for minimum WJ", -20, -20, 0)
-maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 20, 0, 20 )
 
 g_wjValues = [ minDefault.value, 0, maxDefault.value ]
 g_wjCurrent = 1 # 0 = min, 1 = mid, 2 = max
