@@ -1,4 +1,4 @@
-# irwjplugin v0.0.3 by Ryan Otis
+# irwjplugin v0.0.4 by Ryan Otis
 
 import gremlin
 import threading
@@ -51,15 +51,10 @@ adjustmentSize = IntegerVariable(
     10
 )
 
-# I originally made this configurable, but it's really unnecessary and just caused confusion
-#
-# minDefault = IntegerVariable("Default min WJ", "Default value for minimum WJ", -20, -20, 0)
-# midDefault = IntegerVariable("Default mid WJ", "Default value for middle WJ", 0, -19, 19)
-# maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 20, 0, 20 )
-#
-# g_wjValues = [ minDefault.value, midDefault.value, maxDefault.value ]
+minDefault = IntegerVariable("Default min WJ", "Default value for minimum WJ", -20, -20, 0)
+maxDefault = IntegerVariable("Default max WJ", "Default value for maximum WJ", 20, 0, 20 )
 
-g_wjValues = [ -20, 0, 20 ]
+g_wjValues = [ minDefault.value, 0, maxDefault.value ]
 g_wjCurrent = 1 # 0 = min, 1 = mid, 2 = max
 g_state = [ 0, 0 ]
 g_cal_t = None
