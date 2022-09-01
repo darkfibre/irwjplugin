@@ -4,7 +4,7 @@
 
 In iRacing you have two options for adjusting the weight jacker. You can adjust it incrementally, one click at a time, OR you can configure it as a rotary encoder and immediately set a WJ value with a single button press.
 
-The default +/- button assignment method in iRacing is fairly self explanatory. You hit + to increase the weight jacker and - to decrease it. The problem is that if you want to go from +10 to -20 to reduce drag on the straight, you need to click the button 30 times. Not cool. (Indycar drivers do this in real life, but unlike iRacing their weight jacker button increments are customizable so they do not need to frantically mash buttons while driving at 230mph)
+The default +/- button assignment method in iRacing is fairly self explanatory. You hit + to increase the weight jacker and - to decrease it. The problem is that if you want to go from +10 to -20 to reduce drag on the straight, you need to click the button 30 times. Not cool.
 
 Conversely, the rotary encoder approach is great because you can instantly select a value without frantic clicking, but you would need 41 buttons on your steering wheel to cover every setting between -20 and 20. This is impractical, even physical rotary encoders on high-end steering wheels do not have >40 positions. This means you lose precision and are unable to select the *exact* weight jacker value that you need. Even the black box control will not let you adjust the setting when using a rotary encoder, not ideal.
 
